@@ -15,11 +15,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Eğer başka bir GameManager varsa bunu yok et
+       
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Sahne geçişlerinde kalıcı olsun
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
