@@ -1,0 +1,44 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class StateManager : MonoBehaviour
+{
+    public MenuState menuState;
+
+    public GamePlayState gamePlayState;
+
+    public PauseState pauseState;
+
+    public GameOverState gameOverState;
+
+
+
+    private IState _currentState;
+
+    public void ChangeState(IState newState)
+    {
+        if(_currentState != null)
+        {
+            _currentState.ExitState();
+        }
+
+        _currentState = newState;
+
+        _currentState.EnterState();
+    }
+
+   
+    void Start()
+    {
+        ChangeState(menuState);
+    }
+
+  
+    void Update()
+    {
+        if( _currentState != null )
+        {
+            _currentState.UpdateState();  
+        }
+    }
+}
