@@ -14,6 +14,12 @@ public class MenuState : MonoBehaviour, IState
     public UnityEvent OnUpdateState;
 
     [SerializeField] public Canvas mainMenu;
+
+    private void Start()
+    {
+        mainMenu.enabled = true;
+        Time.timeScale = 0f;
+    }
     public void EnterState()
     {
         Debug.Log("Entering menu State");
@@ -33,8 +39,10 @@ public class MenuState : MonoBehaviour, IState
 
     public void StartGame()
     {
+
+        mainMenu.enabled = false;
+        Time.timeScale = 1f;
         gameStateManager.ChangeState(gameStateManager.gamePlayState);
-        mainMenu.enabled = true;
-        
+     
     }
 }
