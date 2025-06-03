@@ -8,6 +8,8 @@ public class GameOverUI : MonoBehaviour
 
     [SerializeField] Canvas gameOverCanvas;
 
+    [SerializeField] private StateManager gameStateManager;
+
     void OnEnable()
     {
         healthController.OnHealthUpdated += OnGameOver;
@@ -18,11 +20,13 @@ public class GameOverUI : MonoBehaviour
         healthController.OnHealthUpdated -= OnGameOver;
     }
 
-    private void OnGameOver(float damage, float fullHealth, float currentHealth) 
+    public void OnGameOver(float damage, float fullHealth, float currentHealth) 
     {
         if (healthController != null && currentHealth <= 0)
         {
             gameOverCanvas.enabled = true;
+            gameStateManager.ChangeState(gameStateManager.gameOverState);
+            Time.timeScale = 0f;
         }
     }
 

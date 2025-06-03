@@ -18,13 +18,15 @@ public class GameOverState : MonoBehaviour, IState
 
     public void ExitState()
     {
-        Debug.Log("Entering GameOver State");
+        Debug.Log("Exiting GameOver State");
         OnExitState.Invoke();
     }
 
     public void UpdateState()
     {
-        Debug.Log("Entering GameOver State");
+        Debug.Log("Updating GameOver State");
         OnUpdateState.Invoke();
     }
+
+
 }

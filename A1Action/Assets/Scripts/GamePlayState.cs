@@ -24,7 +24,11 @@ public class GamePlayState : MonoBehaviour, IState
 
     public void UpdateState()
     {
-        Debug.Log("Entering Gameplay State");
+        Debug.Log("Updating Gameplay State");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
         OnUpdateState.Invoke();
     }
 
