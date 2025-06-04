@@ -17,7 +17,15 @@ public class ScoreManager : MonoBehaviour
 
     void Awake()
     {
-      instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); 
+        }
     }
 
     private void Start()
@@ -30,14 +38,24 @@ public class ScoreManager : MonoBehaviour
     }
     public void AddScore(int amount)
     {
-       Score += amount;
-       OnScoreChanged?.Invoke(Score);
+        Score += amount;
+        Debug.Log("Score now: " + Score + " / " + totalCoins);
 
-       if (Score >= totalCoins)
-       {
-          Debug.Log("All coins collected!");
-          gameOverUI.GameFinish();
-       }
+        if (OnScoreChanged != null)
+        {
+            Debug.Log("Calling OnScoreChanged...");
+            OnScoreChanged.Invoke(Score);
+        }
+        else
+        {
+            Debug.LogWarning("OnScoreChanged is NULL — UI not listening!");
+        }
+
+        if (Score >= totalCoins)
+        {
+            Debug.Log("All coins collected!");
+            gameOverUI.GameFinish();
+        }
 
     }
    

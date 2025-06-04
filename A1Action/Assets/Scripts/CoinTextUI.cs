@@ -1,10 +1,19 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CoinTextUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text coinText;
+
+    private void Start()
+    {
+        if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.OnScoreChanged -= UpdateCoinText;
+            ScoreManager.instance.OnScoreChanged += UpdateCoinText;
+            UpdateCoinText(ScoreManager.instance.Score);
+        }
+    }
 
     private void OnEnable()
     {
@@ -20,17 +29,10 @@ public class CoinTextUI : MonoBehaviour
         {
             ScoreManager.instance.OnScoreChanged -= UpdateCoinText;
         }
-           
-    }
-
-    private void Start()
-    {
-        // Show initial score
-        UpdateCoinText(ScoreManager.instance.Score);
     }
 
     private void UpdateCoinText(int score)
     {
-        coinText.text = "Coins: " + score.ToString();
+        coinText.text = "Coin: " + score;
     }
 }
