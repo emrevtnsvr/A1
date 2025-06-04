@@ -3,13 +3,16 @@ using UnityEngine.Events;
 
 public class GamePlayState : MonoBehaviour, IState
 {
-    [SerializeField] private StateManager gameStateManager;
 
     public UnityEvent OnEnterState;
 
     public UnityEvent OnExitState;
 
     public UnityEvent OnUpdateState;
+
+
+
+
     public void EnterState()
     {
         Debug.Log("Entering Gameplay State");
@@ -34,6 +37,7 @@ public class GamePlayState : MonoBehaviour, IState
 
     public void PauseGame()
     {
-        gameStateManager.ChangeState(gameStateManager.pauseState);
+        var stateManager = ServiceLocator.instance.GetService<StateManager>();
+        stateManager.ChangeState(stateManager.pauseState);
     }
 }

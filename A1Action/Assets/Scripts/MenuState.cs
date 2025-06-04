@@ -1,11 +1,10 @@
-using Unity.Mathematics;
+
 using UnityEngine;
 using UnityEngine.Events;
 
 
 public class MenuState : MonoBehaviour, IState
 {
-    [SerializeField] private StateManager gameStateManager;
 
     public UnityEvent OnEnterState;
 
@@ -42,7 +41,8 @@ public class MenuState : MonoBehaviour, IState
 
         mainMenu.enabled = false;
         Time.timeScale = 1f;
-        gameStateManager.ChangeState(gameStateManager.gamePlayState);
-     
+
+        var stateManager = ServiceLocator.instance.GetService<StateManager>();
+        stateManager.ChangeState(stateManager.gamePlayState);
     }
 }

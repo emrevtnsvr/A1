@@ -25,7 +25,8 @@ public class GameOverUI : MonoBehaviour
         if (healthController != null && currentHealth <= 0)
         {
             gameOverCanvas.enabled = true;
-            gameStateManager.ChangeState(gameStateManager.gameOverState);
+            var stateManager = ServiceLocator.instance.GetService<StateManager>();
+            stateManager.ChangeState(stateManager.gameOverState);
             Time.timeScale = 0f;
         }
     }
