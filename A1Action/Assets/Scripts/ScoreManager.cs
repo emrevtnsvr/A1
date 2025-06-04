@@ -10,15 +10,35 @@ public class ScoreManager : MonoBehaviour
 
    public event Action<int> OnScoreChanged;
 
-   void Awake()
-   {
-     instance = this;
-   }
 
-   public void AddScore(int amount)
-   {
-     Score += amount;
-     OnScoreChanged?.Invoke(Score);
-   }
+   [SerializeField] private int totalCoins; 
+
+   [SerializeField] private GameOverUI gameOverUI; 
+
+    void Awake()
+    {
+      instance = this;
+    }
+
+    private void Start()
+    {
+      if (totalCoins <= 0)
+      {
+         totalCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
+      }
+            
+    }
+    public void AddScore(int amount)
+    {
+       Score += amount;
+       OnScoreChanged?.Invoke(Score);
+
+       if (Score >= totalCoins)
+       {
+          Debug.Log("All coins collected!");
+          gameOverUI.GameFinish();
+       }
+
+    }
    
 }

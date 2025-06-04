@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IDamage
 {
-    [SerializeField] private float bulletDamage;
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] private float bulletDamage = 10f;
+
+    public float ProvideDamage()
     {
-       var healthController = collision.gameObject.GetComponent<HealthController>();
-       if (healthController != null)
-        {
-            healthController.GetDamage(bulletDamage);
-        }
+        return bulletDamage;
     }
 }

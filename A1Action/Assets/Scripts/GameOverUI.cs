@@ -31,4 +31,11 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
+    public void GameFinish()
+    {
+        gameOverCanvas.enabled = true;
+        var stateManager = ServiceLocator.instance.GetService<StateManager>();
+        stateManager.ChangeState(stateManager.gameOverState);
+        Time.timeScale = 0f;
+    }
 }
