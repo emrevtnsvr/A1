@@ -20,6 +20,14 @@ public class StateManager : MonoBehaviour
         ChangeState(menuState);
     }
 
+    void Update()
+    {
+        if (_currentState != null)
+        {
+            _currentState.UpdateState();
+        }
+    }
+
     public void ChangeState(IState newState)
     {
         if(_currentState != null)
@@ -32,13 +40,4 @@ public class StateManager : MonoBehaviour
         _currentState.EnterState();
     }
 
-
-  
-    void Update()
-    {
-        if( _currentState != null )
-        {
-            _currentState.UpdateState();  
-        }
-    }
 }
