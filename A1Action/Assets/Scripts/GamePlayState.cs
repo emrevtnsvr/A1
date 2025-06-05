@@ -32,7 +32,7 @@ public class GamePlayState : MonoBehaviour, IState
         {
             PauseGame();
         }
-        OnUpdateState.Invoke();
+        
     }
 
     public void PauseGame()

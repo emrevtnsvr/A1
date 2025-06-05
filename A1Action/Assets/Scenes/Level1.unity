@@ -946,7 +946,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1970e10b5a9ecf74baad714ade6ab63f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStateManager: {fileID: 160067554}
+  pauseMenu: {fileID: 1435915302}
   OnEnterState:
     m_PersistentCalls:
       m_Calls: []
@@ -2868,7 +2868,6 @@ MonoBehaviour:
   OnUpdateState:
     m_PersistentCalls:
       m_Calls: []
-  pauseMenu: {fileID: 1435915302}
 --- !u!1001 &1128891280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4589,7 +4588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f81605735f8514485fccf49993e083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStateManager: {fileID: 160067554}
   OnEnterState:
     m_PersistentCalls:
       m_Calls: []
@@ -4692,7 +4690,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
