@@ -8,8 +8,7 @@ public class GameOverUI : MonoBehaviour
 
     [SerializeField] Canvas gameOverCanvas;
 
-    [SerializeField] private StateManager gameStateManager;
-
+   
     void OnEnable()
     {
         healthController.OnHealthUpdated += OnGameOver;
