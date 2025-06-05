@@ -46,14 +46,9 @@ public class ScoreManager : MonoBehaviour
             Debug.Log("Calling OnScoreChanged...");
             OnScoreChanged.Invoke(Score);
         }
-        else
-        {
-            Debug.LogWarning("OnScoreChanged is NULL — UI not listening!");
-        }
-
+       
         if (Score >= totalCoins)
         {
-            Debug.Log("All coins collected!");
             gameOverUI.GameFinish();
         }
 

@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class GameOverState : MonoBehaviour, IState
 {
-    [SerializeField] private StateManager gameStateManager;
 
     public UnityEvent OnEnterState;
 
@@ -26,7 +25,16 @@ public class GameOverState : MonoBehaviour, IState
     {
         Debug.Log("Updating GameOver State");
         OnUpdateState.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            var stateManager = ServiceLocator.instance.GetService<StateManager>();
+            stateManager.ChangeState(stateManager.menuState); 
+        }
     }
+
+
+
 
 
 }

@@ -3,49 +3,43 @@ using UnityEngine.Events;
 
 public class PauseState : MonoBehaviour, IState
 {
-    [SerializeField] private StateManager gameStateManager;
+    [SerializeField] private Canvas pauseMenu;
 
     public UnityEvent OnEnterState;
-
     public UnityEvent OnExitState;
-
     public UnityEvent OnUpdateState;
 
-    [SerializeField] public Canvas pauseMenu;
     public void EnterState()
     {
         Debug.Log("Entering Pause State");
 
+        Time.timeScale = 0f;
         pauseMenu.enabled = true;
 
-        Time.timeScale = 0f;
-
-        OnEnterState.Invoke();
+        OnEnterState?.Invoke();
     }
 
     public void ExitState()
     {
-        Debug.Log("Entering Pause State");
+        Debug.Log("Exiting Pause State");
 
         Time.timeScale = 1f;
+        pauseMenu.enabled = false;
 
-        OnExitState.Invoke();
+        OnExitState?.Invoke();
     }
 
     public void UpdateState()
     {
-        Debug.Log("Entering Pause State" );
-        if (Input.GetKeyDown(KeyCode.E)) 
+        OnUpdateState?.Invoke();
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("E key pressed: Resuming Game");
-            gameStateManager.ChangeState(gameStateManager.gamePlayState);
-            pauseMenu.enabled = false;
 
+           
+            var stateManager = ServiceLocator.instance.GetService<StateManager>();
+            stateManager.ChangeState(stateManager.gamePlayState);
         }
-
-
-        OnUpdateState.Invoke();
     }
-
-    
 }
