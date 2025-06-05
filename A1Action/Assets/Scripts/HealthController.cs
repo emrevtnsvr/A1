@@ -21,7 +21,7 @@ public class HealthController : MonoBehaviour
     public void GetDamage(float damage)
     {
         _health -= damage;
-        Debug.Log("Health after damage: " + _health); // <- is this printing?
+        Debug.Log("Health after damage: " + _health); 
 
         OnHealthUpdated?.Invoke(damage, fullHealth, _health);
     }

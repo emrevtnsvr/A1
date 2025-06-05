@@ -1,14 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public class GameOverUI : MonoBehaviour
 {
-    [SerializeField] HealthController healthController;
+    [SerializeField] private HealthController healthController;
 
-    [SerializeField] Canvas gameOverCanvas;
-
-   
     void OnEnable()
     {
         healthController.OnHealthUpdated += OnGameOver;
@@ -19,22 +14,18 @@ public class GameOverUI : MonoBehaviour
         healthController.OnHealthUpdated -= OnGameOver;
     }
 
-    public void OnGameOver(float damage, float fullHealth, float currentHealth) 
+    public void OnGameOver(float damage, float fullHealth, float currentHealth)
     {
-        if (healthController != null && currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            gameOverCanvas.enabled = true;
             var stateManager = ServiceLocator.instance.GetService<StateManager>();
             stateManager.ChangeState(stateManager.gameOverState);
-            Time.timeScale = 0f;
         }
     }
 
     public void GameFinish()
     {
-        gameOverCanvas.enabled = true;
         var stateManager = ServiceLocator.instance.GetService<StateManager>();
         stateManager.ChangeState(stateManager.gameOverState);
-        Time.timeScale = 0f;
     }
 }

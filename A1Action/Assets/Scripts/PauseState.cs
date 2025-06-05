@@ -31,7 +31,7 @@ public class PauseState : MonoBehaviour, IState
 
     public void UpdateState()
     {
-        OnUpdateState?.Invoke();
+       
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -40,6 +40,8 @@ public class PauseState : MonoBehaviour, IState
            
             var stateManager = ServiceLocator.instance.GetService<StateManager>();
             stateManager.ChangeState(stateManager.gamePlayState);
+
+            OnUpdateState?.Invoke();
         }
     }
 }

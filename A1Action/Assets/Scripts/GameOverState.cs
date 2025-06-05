@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
+
 
 public class GameOverState : MonoBehaviour, IState
 {
+
+    [SerializeField] private Canvas gameOverCanvas;
 
     public UnityEvent OnEnterState;
 
@@ -12,8 +14,8 @@ public class GameOverState : MonoBehaviour, IState
     public UnityEvent OnUpdateState;
     public void EnterState()
     {
-        Debug.Log("Entering GameOver State");
-        OnEnterState.Invoke();
+        gameOverCanvas.enabled = true;
+        Time.timeScale = 0f;
     }
 
     public void ExitState()

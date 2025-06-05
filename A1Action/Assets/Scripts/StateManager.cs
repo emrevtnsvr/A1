@@ -15,6 +15,11 @@ public class StateManager : MonoBehaviour
 
     private IState _currentState;
 
+    void Start()
+    {
+        ChangeState(menuState);
+    }
+
     public void ChangeState(IState newState)
     {
         if(_currentState != null)
@@ -27,11 +32,6 @@ public class StateManager : MonoBehaviour
         _currentState.EnterState();
     }
 
-   
-    void Start()
-    {
-        ChangeState(menuState);
-    }
 
   
     void Update()

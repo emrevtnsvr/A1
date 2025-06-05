@@ -14,20 +14,24 @@ public class MenuState : MonoBehaviour, IState
 
     [SerializeField] public Canvas mainMenu;
 
-    private void Start()
-    {
-        mainMenu.enabled = true;
-        Time.timeScale = 0f;
-    }
     public void EnterState()
     {
-        Debug.Log("Entering menu State");
-        OnEnterState.Invoke();  
+        Debug.Log("Entering Menu State");
+
+        mainMenu.enabled = true;
+        Time.timeScale = 0f;
+
+        OnEnterState?.Invoke();
     }
     public void ExitState()
     {
         Debug.Log("Exiting Menu State");
-        OnExitState.Invoke();
+
+        mainMenu.enabled = false;
+        Time.timeScale = 1f;
+
+
+        OnExitState?.Invoke();
     }
 
     public void UpdateState()
@@ -38,11 +42,8 @@ public class MenuState : MonoBehaviour, IState
 
     public void StartGame()
     {
-
-        mainMenu.enabled = false;
-        Time.timeScale = 1f;
-
         var stateManager = ServiceLocator.instance.GetService<StateManager>();
         stateManager.ChangeState(stateManager.gamePlayState);
+
     }
 }

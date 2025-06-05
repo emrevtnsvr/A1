@@ -30,14 +30,13 @@ public class GamePlayState : MonoBehaviour, IState
         Debug.Log("Updating Gameplay State");
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseGame();
+            
+            var stateManager = ServiceLocator.instance.GetService<StateManager>();
+            stateManager.ChangeState(stateManager.pauseState);
         }
-        
+
+        OnUpdateState?.Invoke();
     }
 
-    public void PauseGame()
-    {
-        var stateManager = ServiceLocator.instance.GetService<StateManager>();
-        stateManager.ChangeState(stateManager.pauseState);
-    }
+   
 }
