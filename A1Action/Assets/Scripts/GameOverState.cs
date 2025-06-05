@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameOverState : MonoBehaviour, IState
 {
@@ -26,11 +27,6 @@ public class GameOverState : MonoBehaviour, IState
         Debug.Log("Updating GameOver State");
         OnUpdateState.Invoke();
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            var stateManager = ServiceLocator.instance.GetService<StateManager>();
-            stateManager.ChangeState(stateManager.menuState); 
-        }
     }
 
 
