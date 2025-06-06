@@ -39,8 +39,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         Score += amount;
-        Debug.Log("Score now: " + Score + " / " + totalCoins);
-
+       
         if (OnScoreChanged != null)
         {
             Debug.Log("Calling OnScoreChanged...");

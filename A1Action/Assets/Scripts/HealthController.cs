@@ -4,7 +4,9 @@ using UnityEngine;
 
 
 public class HealthController : MonoBehaviour
+
 {
+
     [SerializeField] private float fullHealth;
 
     private float _health;
